@@ -1,29 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@300;400;500;700;900&display=swap');
 
 :root {
-    /* Color Palette */
-    --bg-main: #090d16;
-    --bg-surface: rgba(22, 28, 45, 0.6);
-    --bg-surface-active: rgba(30, 41, 67, 0.85);
-    --bg-input: rgba(10, 15, 30, 0.8);
+    /* Efrat Izabela Abayev Brand Palette (Deep Plum & Brushed Gold) */
+    --bg-main: #140412; /* Dark plum base */
+    --bg-surface: rgba(46, 9, 41, 0.55); /* Plum tinted glassmorphism */
+    --bg-surface-active: rgba(78, 17, 70, 0.8); /* Active deep berry glass */
+    --bg-input: rgba(18, 3, 16, 0.85);
     
     --border-color: rgba(255, 255, 255, 0.08);
-    --border-gold-glow: rgba(251, 191, 36, 0.25);
+    --border-gold-glow: rgba(251, 191, 36, 0.28);
     --border-gold-solid: #fbbf24;
     
-    --primary-gold: #fbbf24;
+    --primary-gold: #fbbf24; /* Elegant Gold */
     --primary-gold-hover: #f59e0b;
     --primary-gold-dark: #b45309;
     
-    --accent-indigo: #818cf8;
-    --accent-indigo-dark: #4f46e5;
+    --accent-purple: #d946ef; /* Magenta/Plum Accent */
+    --accent-purple-light: #f0abfc;
+    --accent-indigo: #a78bfa;
     
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
+    --text-secondary: #cbd5e1;
     --text-muted: #64748b;
     
     --status-new: #38bdf8;
-    --status-contacted: #a78bfa;
+    --status-contacted: #f472b6; /* Changed to match plum palette */
     --status-meeting: #fb7185;
     --status-neg: #fb923c;
     --status-closed: #34d399;
@@ -32,8 +33,8 @@
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
-    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-    --shadow-glow: 0 0 20px rgba(251, 191, 36, 0.15);
+    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    --shadow-glow: 0 0 25px rgba(251, 191, 36, 0.18);
 }
 
 * {
@@ -52,8 +53,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.06) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(217, 70, 239, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(251, 191, 36, 0.07) 0%, transparent 45%);
     background-attachment: fixed;
     line-height: 1.5;
 }
@@ -106,10 +107,10 @@ body {
     max-width: 480px; /* Mobile focused max width */
     margin: 0 auto;
     position: relative;
-    background: rgba(9, 13, 22, 0.8);
+    background: rgba(20, 4, 18, 0.85); /* Plum tinted container bg */
     border-left: 1px solid rgba(255, 255, 255, 0.03);
     border-right: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
 }
 
 @media(min-width: 768px) {
@@ -120,16 +121,16 @@ body {
 
 /* Header */
 header {
-    padding: 20px 20px 10px 20px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(9, 13, 22, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(20, 4, 18, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -137,38 +138,37 @@ header {
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-dark) 100%);
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #3c0936 0%, #1c0219 100%);
+    border: 1.5px solid var(--primary-gold);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow-glow);
-}
-
-.logo-icon i {
-    color: #000;
-    font-size: 20px;
+    padding: 3px;
 }
 
 .logo-text h1 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
-    background: linear-gradient(to left, #ffffff, var(--primary-gold));
+    line-height: 1.2;
+    background: linear-gradient(to left, #ffffff 30%, var(--primary-gold) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
 }
 
 .logo-text span {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--text-secondary);
     display: block;
-    margin-top: -2px;
+    font-weight: 400;
 }
 
 .settings-btn {
@@ -194,7 +194,7 @@ header {
 /* Main Content Area */
 main {
     flex: 1;
-    padding: 10px 20px 90px 20px; /* 90px bottom padding to account for nav bar */
+    padding: 15px 20px 90px 20px; /* 90px bottom padding to account for nav bar */
     overflow-y: auto;
 }
 
@@ -207,9 +207,9 @@ main {
     width: 100%;
     max-width: 480px;
     height: 70px;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(26, 6, 23, 0.95); /* Deep plum nav bg */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: space-around;
@@ -327,7 +327,7 @@ main {
 }
 
 .action-btn:hover {
-    background: rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.05);
     border-color: var(--primary-gold);
     transform: translateY(-2px);
 }
@@ -393,7 +393,7 @@ main {
 
 /* Status colors and badges */
 .badge-new { background: rgba(56, 189, 248, 0.15); color: var(--status-new); }
-.badge-contacted { background: rgba(167, 139, 250, 0.15); color: var(--status-contacted); }
+.badge-contacted { background: rgba(244, 114, 182, 0.15); color: var(--status-contacted); }
 .badge-meeting { background: rgba(251, 113, 133, 0.15); color: var(--status-meeting); }
 .badge-neg { background: rgba(251, 146, 60, 0.15); color: var(--status-neg); }
 .badge-closed { background: rgba(52, 211, 153, 0.15); color: var(--status-closed); }
@@ -439,7 +439,7 @@ main {
 
 .search-input:focus {
     border-color: var(--primary-gold);
-    box-shadow: 0 0 10px rgba(251, 191, 36, 0.1);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.15);
 }
 
 .filter-select {
@@ -463,9 +463,9 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(10, 1, 9, 0.88);
     z-index: 1000;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -571,7 +571,7 @@ textarea.form-control {
 
 .form-submit-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 0 25px rgba(251, 191, 36, 0.3);
+    box-shadow: 0 0 25px rgba(251, 191, 36, 0.4);
 }
 
 /* Card Actions Overlay on Leads / Listings */
@@ -634,8 +634,8 @@ textarea.form-control {
 }
 
 .agent-selector-card.active {
-    border-color: var(--accent-indigo);
-    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px rgba(217, 70, 239, 0.25);
 }
 
 .agent-avatar {
@@ -662,7 +662,7 @@ textarea.form-control {
 .agent-selector-card.marketing .agent-avatar { color: #ec4899; }
 .agent-selector-card.leads .agent-avatar { color: #10b981; }
 .agent-selector-card.objections .agent-avatar { color: #ef4444; }
-.agent-selector-card.analyzer .agent-avatar { color: #8b5cf6; }
+.agent-selector-card.analyzer .agent-avatar { color: #a78bfa; }
 
 .agent-name {
     font-weight: 700;
@@ -709,7 +709,7 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.25);
 }
 
 .chat-message {
@@ -768,7 +768,7 @@ textarea.form-control {
     border-top: 1px solid var(--border-color);
     display: flex;
     gap: 8px;
-    background: rgba(9, 13, 22, 0.5);
+    background: rgba(20, 4, 18, 0.6);
 }
 
 .chat-input {

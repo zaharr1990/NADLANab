@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>תיווך אבייב | פורטל מתווכת על</title>
+    <title>אפרת אבייב | פורטל מתווכת על</title>
     <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Main Style Sheet -->
@@ -17,11 +17,16 @@
         <header>
             <div class="logo-container">
                 <div class="logo-icon">
-                    <i class="fas fa-crown"></i>
+                    <svg viewBox="0 0 100 100" style="width: 32px; height: 32px; overflow: visible;">
+                        <!-- Minimalist golden house lines matching Efrat's logo -->
+                        <path d="M15 70 L50 25 L85 70" stroke="#fbbf24" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <path d="M32 70 L50 44 L68 70" stroke="#ffffff" stroke-width="6" stroke-linecap="round" fill="none"/>
+                        <line x1="8" y1="80" x2="92" y2="80" stroke="#fbbf24" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
                 </div>
                 <div class="logo-text">
-                    <h1>תיווך אבייב</h1>
-                    <span>פורטל מתווכת על לניהול ו-AI</span>
+                    <h1>אפרת אבייב</h1>
+                    <span>נדל"ן ABAYEV • מתווכת על</span>
                 </div>
             </div>
             <button id="settings-gear-btn" class="settings-btn" title="הגדרות וגיבוי">
@@ -423,7 +428,7 @@
         <div id="prompt-copy-modal" class="modal">
             <div class="modal-content glass-panel gold-border-glow">
                 <div class="modal-header">
-                    <h2 class="modal-title" style="color: var(--accent-indigo);"><i class="fas fa-magic"></i> מחולל פרומפטים חיצוני</h2>
+                    <h2 class="modal-title" style="color: var(--accent-purple-light);"><i class="fas fa-magic"></i> מחולל פרומפטים חיצוני</h2>
                     <button class="close-modal-btn" onclick="closeModal('prompt-copy-modal')">&times;</button>
                 </div>
                 <div class="prompt-copy-modal-body">
@@ -431,7 +436,7 @@
                         מפתח ה-API אינו מחובר. העתקי את הפרומפט המקצועי שהכנו עבורך והדביקי אותו ישירות ב-ChatGPT, Gemini או Claude הפרטי שלך לקבלת המענה הטוב ביותר:
                     </p>
                     <textarea id="prompt-copy-text" class="prompt-text-area" readonly></textarea>
-                    <button onclick="copyPromptText()" class="form-submit-btn" style="background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-indigo-dark) 100%); color: white;">
+                    <button onclick="copyPromptText()" class="form-submit-btn" style="background: linear-gradient(135deg, var(--accent-purple) 0%, #a21caf 100%); color: white;">
                         <i class="fas fa-copy" style="margin-left: 8px;"></i> העתקת הפרומפט ללוח
                     </button>
                 </div>
