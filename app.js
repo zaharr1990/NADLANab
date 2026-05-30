@@ -34,7 +34,7 @@ function loadDataFromLocalStorage() {
         if (storedSettings) State.settings = { ...State.settings, ...JSON.parse(storedSettings) };
         if (storedChats) State.chats = JSON.parse(storedChats);
         
-        // Initialize Leads as empty array if not exists
+        // Initialize Leads as empty array if not exists (No mock leads)
         if (storedLeads) {
             State.leads = JSON.parse(storedLeads);
         } else {
@@ -42,11 +42,45 @@ function loadDataFromLocalStorage() {
             saveState('leads');
         }
         
-        // Initialize Properties as empty array if not exists
+        // Initialize Properties with Efrat's real catalog listings if not exists
         if (storedProps) {
             State.properties = JSON.parse(storedProps);
         } else {
-            State.properties = [];
+            State.properties = [
+                {
+                    id: 'prop_real1',
+                    address: 'דירת 2 חדרים (מחיר מציאה!), ירוחם',
+                    price: '450000',
+                    exclusivity: 'no',
+                    exclExpiration: '',
+                    ownerName: 'אפרת אבייב',
+                    ownerPhone: '052-959-1089',
+                    notes: '2 חדרים ממוזגת, משופצת חלקית, מושכרת ב-2,200 ש"ח לא כולל חשבונות. שטח בטאבו: 40 מ"ר, ארנונה: 48 מ"ר.',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'prop_real2',
+                    address: 'שכונת האירוסים, ירוחם (2 חדרים)',
+                    price: '425000',
+                    exclusivity: 'no',
+                    exclExpiration: '',
+                    ownerName: 'אפרת אבייב',
+                    ownerPhone: '052-959-1089',
+                    notes: '2 חדרים משופצת, קומה 2, גודל בטאבו: 39.5 מ"ר. קרובה למרכז המסחרי. ריצוף חדש בכל הבית, צביעה קומפלט ותיקונים כלליים. 2 מזגנים במצב מעולה. שימו לב: מחיר סגירה!',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'prop_real3',
+                    address: 'שכונת האירוסים (מחיר הזדמנות!), ירוחם',
+                    price: '935000',
+                    exclusivity: 'no',
+                    exclExpiration: '',
+                    ownerName: 'אפרת אבייב',
+                    ownerPhone: '052-959-1089',
+                    notes: 'דירת 4 חדרים מרווחת, 93 מ"ר, קומה 2, ממ"ד, מעלית, יחידת הורים, מרפסת שמש, שירותי אורחים.',
+                    createdAt: new Date().toISOString()
+                }
+            ];
             saveState('properties');
         }
         
