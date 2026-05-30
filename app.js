@@ -1,10 +1,12 @@
 // App State Management
+const GEMINI_API_KEY = 'AIzaSyB4jTSL7T-lHGLT4Xs_3J6h7biEKZ9x1VA';
+
 const State = {
     leads: [],
     properties: [],
     settings: {
-        geminiKey: '',
-        userName: 'אפרת',
+        geminiKey: GEMINI_API_KEY,
+        userName: 'בלה',
         agencyName: 'ABAYEV נדל"ן'
     },
     chats: {}, // { agentId: [{role: 'user'|'model', text: '...', timestamp: Date}] }
@@ -32,6 +34,8 @@ function loadDataFromLocalStorage() {
         const storedChats = localStorage.getItem('abayev_chats');
         
         if (storedSettings) State.settings = { ...State.settings, ...JSON.parse(storedSettings) };
+        State.settings.geminiKey = GEMINI_API_KEY;
+        State.settings.userName = 'בלה';
         if (storedChats) State.chats = JSON.parse(storedChats);
         
         // Initialize Leads as empty array if not exists (No mock leads)
@@ -84,10 +88,10 @@ function loadDataFromLocalStorage() {
             saveState('properties');
         }
         
-        // Load API key to settings input if exists
+        // API key is hardcoded in the codebase
         const keyInput = document.getElementById('settings-gemini-key');
-        if (keyInput && State.settings.geminiKey) {
-            keyInput.value = State.settings.geminiKey;
+        if (keyInput) {
+            keyInput.value = '••••••••••••••••••••••••••••••••';
         }
     } catch (e) {
         console.error("Error loading data from LocalStorage:", e);
@@ -195,14 +199,23 @@ function initEventListeners() {
     
     // Settings Form Save
     const settingsForm = document.getElementById('settings-form');
-    settingsForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const apiKey = document.getElementById('settings-gemini-key').value.trim();
-        State.settings.geminiKey = apiKey;
-        saveState('settings');
-        showToast("ההגדרות נשמרו בהצלחה!");
-        switchView('dashboard');
-    });
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const keyInput = document.getElementById('settings-gemini-key');
+            if (keyInput) {
+                const val = keyInput.value.trim();
+                if (val && !val.includes('•••')) {
+                    State.settings.geminiKey = val;
+                }
+            } else {
+                State.settings.geminiKey = GEMINI_API_KEY;
+            }
+            saveState('settings');
+            showToast("ההגדרות נשמרו בהצלחה!");
+            switchView('dashboard');
+        });
+    }
     
     // Data backup button
     document.getElementById('backup-data-btn').addEventListener('click', exportBackupJSON);
@@ -406,7 +419,7 @@ function renderLeads() {
             </div>
             <div class="card-actions">
                 <a href="tel:${lead.phone}" class="action-icon" title="התקשר קליק"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/972${lead.phone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + lead.name + ', זו אפרת מנדל\'ן ABAYEV בקשר לפנייתך...')}" target="_blank" class="action-icon whatsapp" title="שלח וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/972${lead.phone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + lead.name + ', זו בלה מנדל\'ן ABAYEV בקשר לפנייתך...')}" target="_blank" class="action-icon whatsapp" title="שלח וואטסאפ"><i class="fab fa-whatsapp"></i></a>
                 <button class="action-icon" onclick="editLead('${lead.id}')" title="עריכה"><i class="fas fa-edit"></i></button>
                 <button class="action-icon delete" onclick="deleteLead('${lead.id}')" title="מחיקה"><i class="fas fa-trash-alt"></i></button>
             </div>
@@ -498,7 +511,7 @@ function renderProperties() {
             </div>
             <div class="card-actions">
                 <a href="tel:${prop.ownerPhone}" class="action-icon" title="התקשר לבעלים"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/972${prop.ownerPhone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + prop.ownerName + ', זו אפרת מנדל\'ן ABAYEV בקשר לנכס שלך ב-' + prop.address + '...')}" target="_blank" class="action-icon whatsapp" title="וואטסאפ לבעלים"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/972${prop.ownerPhone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + prop.ownerName + ', זו בלה מנדל\'ן ABAYEV בקשר לנכס שלך ב-' + prop.address + '...')}" target="_blank" class="action-icon whatsapp" title="וואטסאפ לבעלים"><i class="fab fa-whatsapp"></i></a>
                 <button class="action-icon" onclick="editProperty('${prop.id}')" title="עריכה"><i class="fas fa-edit"></i></button>
                 <button class="action-icon delete" onclick="deleteProperty('${prop.id}')" title="מחיקה"><i class="fas fa-trash-alt"></i></button>
             </div>
