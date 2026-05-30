@@ -419,7 +419,7 @@ function renderLeads() {
             </div>
             <div class="card-actions">
                 <a href="tel:${lead.phone}" class="action-icon" title="התקשר קליק"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/972${lead.phone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + lead.name + ', זו בלה מנדל\'ן ABAYEV בקשר לפנייתך...')}" target="_blank" class="action-icon whatsapp" title="שלח וואטסאפ"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/972${lead.phone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + lead.name + ', זו אפרת מנדל\'ן ABAYEV בקשר לפנייתך...')}" target="_blank" class="action-icon whatsapp" title="שלח וואטסאפ"><i class="fab fa-whatsapp"></i></a>
                 <button class="action-icon" onclick="editLead('${lead.id}')" title="עריכה"><i class="fas fa-edit"></i></button>
                 <button class="action-icon delete" onclick="deleteLead('${lead.id}')" title="מחיקה"><i class="fas fa-trash-alt"></i></button>
             </div>
@@ -511,7 +511,7 @@ function renderProperties() {
             </div>
             <div class="card-actions">
                 <a href="tel:${prop.ownerPhone}" class="action-icon" title="התקשר לבעלים"><i class="fas fa-phone"></i></a>
-                <a href="https://wa.me/972${prop.ownerPhone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + prop.ownerName + ', זו בלה מנדל\'ן ABAYEV בקשר לנכס שלך ב-' + prop.address + '...')}" target="_blank" class="action-icon whatsapp" title="וואטסאפ לבעלים"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/972${prop.ownerPhone.replace(/^0/, '')}?text=${encodeURIComponent('שלום ' + prop.ownerName + ', זו אפרת מנדל\'ן ABAYEV בקשר לנכס שלך ב-' + prop.address + '...')}" target="_blank" class="action-icon whatsapp" title="וואטסאפ לבעלים"><i class="fab fa-whatsapp"></i></a>
                 <button class="action-icon" onclick="editProperty('${prop.id}')" title="עריכה"><i class="fas fa-edit"></i></button>
                 <button class="action-icon delete" onclick="deleteProperty('${prop.id}')" title="מחיקה"><i class="fas fa-trash-alt"></i></button>
             </div>
