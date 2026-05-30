@@ -31,10 +31,92 @@ function loadDataFromLocalStorage() {
         const storedSettings = localStorage.getItem('abayev_settings');
         const storedChats = localStorage.getItem('abayev_chats');
         
-        if (storedLeads) State.leads = JSON.parse(storedLeads);
-        if (storedProps) State.properties = JSON.parse(storedProps);
         if (storedSettings) State.settings = { ...State.settings, ...JSON.parse(storedSettings) };
         if (storedChats) State.chats = JSON.parse(storedChats);
+        
+        // Seed Leads if empty
+        if (storedLeads) {
+            State.leads = JSON.parse(storedLeads);
+        } else {
+            State.leads = [
+                {
+                    id: 'lead_sample1',
+                    name: 'משה כהן (משקיע)',
+                    phone: '0501234567',
+                    budget: '750000',
+                    type: 'buyer',
+                    requirements: 'דירת 3 חדרים בירוחם להשקעה, תשואה גבוהה',
+                    status: 'new',
+                    notes: 'מחפש דירה מושכרת כבר או קרובה למרכז העיר',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'lead_sample2',
+                    name: 'משפחת לוי (רחל)',
+                    phone: '0547654321',
+                    budget: '1250000',
+                    type: 'buyer',
+                    requirements: 'דירת גן או בית פרטי, מינימום 4 חדרים עם גינה',
+                    status: 'contacted',
+                    notes: 'זוג צעיר עם ילד, צריכים קרבה לגני ילדים ובתי ספר',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'lead_sample3',
+                    name: 'דוד אבוטבול (מוכר)',
+                    phone: '0525556677',
+                    budget: '850000',
+                    type: 'seller',
+                    requirements: 'מעוניין למכור דירה ברחוב בורשטיין לשדרוג',
+                    status: 'meeting',
+                    notes: 'פגישה ליום שלישי להערכת שווי נכס וחתימת בלעדיות',
+                    createdAt: new Date().toISOString()
+                }
+            ];
+            saveState('leads');
+        }
+        
+        // Seed Properties if empty
+        if (storedProps) {
+            State.properties = JSON.parse(storedProps);
+        } else {
+            State.properties = [
+                {
+                    id: 'prop_sample1',
+                    address: 'רחוב שקד 14, ירוחם',
+                    price: '680000',
+                    exclusivity: 'yes',
+                    exclExpiration: new Date(Date.now() + 90*24*60*60*1000).toISOString().split('T')[0],
+                    ownerName: 'יצחק שלום',
+                    ownerPhone: '0528889900',
+                    notes: 'דירת 3 חדרים, 78 מ"ר, קומה 2 מתוך 3, מוארת, משופצת חלקית, מושכרת כרגע ב-2,200 ש"ח למשקיע.',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'prop_sample2',
+                    address: 'רחוב נחל צין 8, ירוחם',
+                    price: '1380000',
+                    exclusivity: 'yes',
+                    exclExpiration: new Date(Date.now() + 120*24*60*60*1000).toISOString().split('T')[0],
+                    ownerName: 'שרה ואלון לוי',
+                    ownerPhone: '0504443322',
+                    notes: 'קוטג\' טורי מדהים 5 חדרים, 140 מ"ר, גינה מטופחת של 100 מ"ר, מטבח משודרג, מיזוג מלא, כניסה גמישה.',
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: 'prop_sample3',
+                    address: 'רחוב בורשטיין 25, ירוחם',
+                    price: '850000',
+                    exclusivity: 'no',
+                    exclExpiration: '',
+                    ownerName: 'דוד אבוטבול',
+                    ownerPhone: '0525556677',
+                    notes: 'דירת 4 חדרים מרווחת, 95 מ"ר, קומה 3 עם מעלית, נוף פתוח למדבר, פינוי תוך 6 חודשים.',
+                    createdAt: new Date().toISOString()
+                }
+            ];
+            saveState('properties');
+        }
         
         // Load API key to settings input if exists
         const keyInput = document.getElementById('settings-gemini-key');
