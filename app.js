@@ -1,11 +1,9 @@
 // App State Management
-const GEMINI_API_KEY = 'AIzaSyB4jTSL7T-lHGLT4Xs_3J6h7biEKZ9x1VA';
-
 const State = {
     leads: [],
     properties: [],
     settings: {
-        geminiKey: GEMINI_API_KEY,
+        geminiKey: '',
         userName: 'בלה',
         agencyName: 'ABAYEV נדל"ן'
     },
@@ -34,7 +32,6 @@ function loadDataFromLocalStorage() {
         const storedChats = localStorage.getItem('abayev_chats');
         
         if (storedSettings) State.settings = { ...State.settings, ...JSON.parse(storedSettings) };
-        State.settings.geminiKey = GEMINI_API_KEY;
         State.settings.userName = 'בלה';
         if (storedChats) State.chats = JSON.parse(storedChats);
         
@@ -88,10 +85,10 @@ function loadDataFromLocalStorage() {
             saveState('properties');
         }
         
-        // API key is hardcoded in the codebase
+        // Load API key to settings input if exists
         const keyInput = document.getElementById('settings-gemini-key');
-        if (keyInput) {
-            keyInput.value = '••••••••••••••••••••••••••••••••';
+        if (keyInput && State.settings.geminiKey) {
+            keyInput.value = State.settings.geminiKey;
         }
     } catch (e) {
         console.error("Error loading data from LocalStorage:", e);
@@ -204,12 +201,7 @@ function initEventListeners() {
             e.preventDefault();
             const keyInput = document.getElementById('settings-gemini-key');
             if (keyInput) {
-                const val = keyInput.value.trim();
-                if (val && !val.includes('•••')) {
-                    State.settings.geminiKey = val;
-                }
-            } else {
-                State.settings.geminiKey = GEMINI_API_KEY;
+                State.settings.geminiKey = keyInput.value.trim();
             }
             saveState('settings');
             showToast("ההגדרות נשמרו בהצלחה!");
